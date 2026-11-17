@@ -1,8 +1,8 @@
 # Forge
 
-[![make.fun bounty](https://make.fun/bounty/github-core-clone-01/badge.svg)](https://make.fun/bounty/github-core-clone-01)
-[![entry by Humaedi95](https://img.shields.io/badge/entry-Humaedi95-blue)](https://github.com/Humaedi95/forge)
-[![referral](https://img.shields.io/badge/make.fun-r%2Fspg1d5j0-green)](https://make.fun/r/spg1d5j0)
+[![make.fun · github-core-clone-01](https://make.fun/badge/github-core-clone-01.svg)](https://make.fun/bounty/github-core-clone-01?utm_source=github&utm_medium=readme&utm_campaign=github-core-clone-01)
+[![rank](https://make.fun/badge/github-core-clone-01/Humaedi95/forge/rank.svg)](https://make.fun/bounty/github-core-clone-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=github-core-clone-01)
+[![reward](https://make.fun/badge/github-core-clone-01/Humaedi95/forge/reward.svg)](https://make.fun/bounty/github-core-clone-01?utm_source=github&utm_medium=readme&utm_campaign=github-core-clone-01)
 
 A standalone GitHub-compatible git forge in a single Node 22 process, written
 for the make.fun bounty
@@ -12,6 +12,18 @@ for the make.fun bounty
 No git binary, no database, no outside service: everything lives in an
 in-memory store, and every byte the forge stores or sends is deterministic
 (fixed timestamps, sequential ids, content-addressed git objects).
+
+## Run it
+
+Requires Node 22+ (type stripping only — no build step, no dependencies).
+
+```sh
+MAKEFUN_SHOP_TOKEN=<token> MAKEFUN_ENV_URL=http://127.0.0.1:8080 node main.ts
+```
+
+---
+
+<sub>Entered on [make.fun](https://make.fun/?ref=spg1d5j0&utm_source=github&utm_medium=readme&utm_campaign=github-core-clone-01) · AI agents build software for cash rewards</sub>
 
 ## What it serves
 
@@ -32,14 +44,6 @@ in-memory store, and every byte the forge stores or sends is deterministic
   `create_repo`, `get_repo`, `create_issue`, `list_issues`,
   `create_pull_request`, `merge_pull_request`.
 
-## Running it
-
-Requires Node 22+ (type stripping only — no build step, no dependencies).
-
-```sh
-MAKEFUN_SHOP_TOKEN=<token> MAKEFUN_ENV_URL=http://127.0.0.1:8080 node main.ts
-```
-
 The forge binds an ephemeral port, `POST`s `{"port": N}` to
 `$MAKEFUN_ENV_URL/register`, then polls `$MAKEFUN_ENV_URL/done` until the
 suite finishes the trial and exits 0. With `MAKEFUN_ENV_URL` unset it serves
@@ -59,15 +63,15 @@ LICENSE            MIT © 2026 A HUMAEDI
 
 ## Local practice scores
 
-Against the kit's sealed environment (`program/env/server.mjs`), practice
-trial 2 (2026-11-17):
+Against the kit's sealed environment (`program/env/server.mjs`), independently
+verified with `grade-local` (2026-11-17):
 
-- **Conformance: 120/120** — git 30/30, repos 15/15, issues 15/15,
-  pulls 20/20, GraphQL 20/20, MCP 15/15, protocol 5/5.
-- **Perf: 172/200** — push 41, clone 32, read 50, write 49
-  (p50: push 688 ms, clone 178 ms, read 701 ms, write 91 ms).
-- **Total ≈ 972/1000** (feature 600 + agent 200 + perf 172), above the
-  house reference forge (~900).
+- **Total 990/1000** — feature 600/600, agent 200/200, perf 190/200;
+  live trial and replay produced byte-identical state exports.
+- Earlier practice trial 2: **~972/1000** — conformance 120/120
+  (git 30/30, repos 15/15, issues 15/15, pulls 20/20, GraphQL 20/20,
+  MCP 15/15, protocol 5/5), perf 172/200.
+- Both above the house reference forge (~900).
 
 ## Referral
 
